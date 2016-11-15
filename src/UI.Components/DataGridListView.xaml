@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="UI.Components.DataGridListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+        BorderThickness="1px" BorderBrush="DeepSkyBlue"
+        Padding="6"
+        mc:Ignorable="d"   
+        x:Name="UOMControl"
+        d:DesignWidth="420"  d:DesignHeight="150">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!-- Toolbar -->
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Filter for:" FontWeight="Bold" />
+            <TextBox x:Name="GridSearchText" Grid.Column="1" Margin="6,0,6,0" Padding="2" TextChanged="OnGridSearchTextChanged" >
+                <TextBox.Background>
+                    <ImageBrush ImageSource="Resources/zoom-2.png" Stretch="None" AlignmentX="Right" />
+                </TextBox.Background>
+            </TextBox>
+        </Grid>        
+        <!-- Grid -->
+        <ListView x:Name="GridListView" Margin="6" Grid.Row="1"
+            ItemsSource="{Binding DataContext, ElementName=UOMControl}"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            SelectedItem="{Binding GridSelectedItem}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="30" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView />
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal"  >
+            <TextBlock Text="Total items: " Margin="6,0,6,0" FontWeight="Bold" />
+            <TextBlock x:Name="GridVisibleItems" Margin="6,0,6,0" FontWeight="Bold" />
+            <TextBlock Text="of" Margin="6,0,6,0" FontWeight="Bold" />
+            <TextBlock x:Name="GridTotalItems" Margin="6,0,6,0" FontWeight="Bold" />            
+        </StackPanel>
+    </Grid>
+</UserControl>
+

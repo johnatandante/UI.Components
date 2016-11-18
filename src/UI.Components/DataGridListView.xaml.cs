@@ -16,6 +16,12 @@ namespace UI.Components
 		public static readonly DependencyProperty ItemsSourceProperty = 
 			DependencyProperty.Register("ItemsSource", typeof(ICollectionView), typeof(DataGridListView),
 			new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnItemsSourcePropertyChanged)));
+		
+		public static readonly DependencyProperty ListViewItemRowHeightProperty = 
+			DependencyProperty.Register("ListViewItemRowHeight", typeof(string), typeof(DataGridListView), new PropertyMetadata(""));
+
+		public static readonly DependencyProperty SelectedItemProperty = 
+			DependencyProperty.Register("SelectedItem", typeof(object), typeof(DataGridListView), new PropertyMetadata(""));
 
 		GridView _GridView = new GridView();
 
@@ -28,7 +34,6 @@ namespace UI.Components
 				foreach (GridViewColumn col in value) {
 					_GridView.Columns.Add(col);
 				}
-
 			}
 		}
 
@@ -43,11 +48,30 @@ namespace UI.Components
 				SetValue(ItemsSourceProperty, value);
 			}
 		}
+		
+		public string ListViewItemRowHeight {
+			get {
+				return (string)GetValue(ListViewItemRowHeightProperty);
+			}
+			set {
+				SetValue(ListViewItemRowHeightProperty, value);
+			}
+		}
 
+		public object SelectedItem {
+			get {
+				return GetValue(SelectedItemProperty);
+			}
+			set {
+				SetValue(SelectedItemProperty, value);
+			}
+		}
 
 		public DataGridListView() {
 			InitializeComponent();
-			GridListView.View = _GridView;
+			GridListView.View = _GridView;			
+			
+			ListViewItemRowHeight = "32";
 
 			_GridListViewItemSource = CollectionViewSource.GetDefaultView(defaultItemSource);
 			GridListView.ItemsSource = _GridListViewItemSource;

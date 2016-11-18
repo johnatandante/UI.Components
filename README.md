@@ -56,7 +56,7 @@ If you are going to use a ICollectionView with a filter, the total and the parti
 
 ## Future Desiderata Improvements
 - [x] Binding support for ItemSource List
-- [ ] Binding support for ListView Selected Item
+- [x] Binding support for ListView Selected Item
 - [ ] Automatic sort feature
 
 ## Remarks

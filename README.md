@@ -2,15 +2,41 @@
 XAML Components for a better UI
 It provides:
 * `DataGridListView` : Simple ListView with a GridView Layout with binding support for ItemSource List; it supports binding on ListView ItemSourceProperty and also main UserControl
+* `TextBoxPro` : Simple User Control which incapsulate a TextBox Control with a shadind non-editable text when is empty; it supports common features of TextBox
 
 ## HowTo Use
 Just a quick reference guide:
 1. Just Download the repo and include the project into your solution
 2. Use Components in your XAML code
 
-### Code Examples
+## Code Examples
 Don't forget to populate Columns Collection attribute with `GridViewColumn` control
 
+### TextBoxPro
+#### ToDos
+Just include it in your UserControl component
+
+#### Xaml class - CustomNamespace.CustomControlClass.xaml
+```
+<UserControl x:Class="CustomNamespace.CustomControlClass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:ui="clr-namespace:UI.Components;assembly=UI.Components">
+    <UserControl.Resources>
+        <my:CustomClassViewModel x:Key="model"/>
+    </UserControl.Resources>
+   <StackPanel>
+     <Label Content="There is someting in the stackpanel, I Suppose"/>
+      <ui:TextBoxPro x:Name="GridSearchTextNotBinded" Text="Hello There"/>
+      <ui:TextBoxPro Text={Binding} ItalicText="Type your data here"
+        TextChanged="OnTextChanged" />        
+      <ui:TextBoxPro Text={Binding} ItalicText="This text won't be modified"
+        TextChanged="OnTextChanged" />
+   </StackPanel>
+</UserControl> 
+```
+
+### DataGridListView
 #### ToDos
 Replace `CustomNamespace.CustomControlClass` with the Control Class name you are going to implement.
 Replace `CustomNamespace.CustomModelnamespace` with the ViewModel Namespace you are working in.
@@ -57,6 +83,7 @@ If you are going to use a ICollectionView with a filter, the total and the parti
 ## Future Desiderata Improvements
 - [x] Binding support for ItemSource List
 - [x] Binding support for ListView Selected Item
+- [ ] Custom TextBox Control 
 - [ ] Automatic sort feature
 
 ## Remarks
